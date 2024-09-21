@@ -317,7 +317,7 @@ if display:
     if init_data is not None:
 
         start = (0, 0)
-        goal = (st.session_state.world_height-1, st.session_state.world_width-1)
+        goal = (st.session_state.world_width-1, st.session_state.world_height-1)
         print(goal)
         world_traversal = a_star_search(init_data, start, goal, COSTS, MOVES, heuristic)
 
