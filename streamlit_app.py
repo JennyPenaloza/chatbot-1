@@ -318,8 +318,8 @@ if display:
     # Plotting based off module 2
     if init_data is not None:
 
-        start = (0, 0)
-        goal = (st.session_state.world_height-1, st.session_state.world_width-1)
+        start = starting_coord
+        goal = goal_coord
         world_traversal = a_star_search(init_data, start, goal, COSTS, MOVES, heuristic)
 
         path_cost = pretty_print_path(init_data, world_traversal, start, goal, COSTS)
