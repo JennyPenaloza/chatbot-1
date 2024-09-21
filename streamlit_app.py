@@ -168,8 +168,6 @@ def a_star_search( world: List[List[str]], start: Tuple[int, int], goal: Tuple[i
 
     Returns: the offsets needed to get from start state to the goal state
     """    
-    print(world)
-
     frontier = [start]
     parent_explored = {start: None}
     cost_so_far = {start: costs[world[start[0]][start[1]]]}
@@ -314,7 +312,7 @@ display = st.button("Display World and Traversal")
 if display:
 
     init_data = st.session_state.get('init_data')
-
+    print(init_data)
     # Plotting based off module 2
     if init_data is not None:
 
