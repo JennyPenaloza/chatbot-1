@@ -320,7 +320,7 @@ if display:
     if init_data is not None:
 
         start = starting_coord
-        goal = goal_coord
+        goal = (goal_coord[1], goal_coord[0])
         print(start, goal)
         world_traversal = a_star_search(init_data, start, goal, COSTS, MOVES, heuristic)
 
