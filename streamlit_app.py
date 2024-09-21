@@ -182,7 +182,6 @@ def a_star_search( world: List[List[str]], start: Tuple[int, int], goal: Tuple[i
         children = successor(world, current_node, moves)
         
         for child in children:
-            child = (child[1], child[0])
             print(child)
             child_cost = costs[world[child[0]][child[1]]]
             new_cost = heuristic(child, goal, cost_so_far[current_node], child_cost)
