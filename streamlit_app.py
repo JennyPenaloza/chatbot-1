@@ -274,8 +274,11 @@ if 'world_height' not in st.session_state:
 
 # Initialize dataframe when starting up page using initial grid height and width
 # Populate with random data
-if 'init_data' not in st.session_state:
-    init_data = generate_random_world(st.session_state.world_height, st.session_state.world_width, COSTS)
+if 'dataframe' not in st.session_state:
+    init_data = generate_random_world(st.session_state.grid_height, st.session_state.grid_width, COSTS)
+    df = pd.DataFrame(init_data, columns=[f"{i}" for i in range(st.session_state.grid_width)])
+    #st.session_state.dataframe = np.round(df, decimals=2)
+    st.session_state.init_data = init_data
 
 
 with st.sidebar:
@@ -310,16 +313,16 @@ if display:
         figure = plt.figure(figsize = (4, 4))
         axes = figure.add_subplot(1, 1, 1)
 
-        pixels = np.array([255 - p * 255 for p in init_data], dtype='uint8')
-        pixels = pixels.reshape((st.session_state.world_height, st.session_state.world_width))
+        #pixels = np.array([255 - p * 255 for p in init_data], dtype='uint8')
+        #pixels = pixels.reshape((st.session_state.world_height, st.session_state.world_width))
 
-        axes.set_title( "Camera View")
-        axes.imshow(pixels, cmap='gray')
+        #axes.set_title( "Camera View")
+        #axes.imshow(pixels, cmap='gray')
 
-        axes.set_xticks(np.arange(0, st.session_state.world_width, 2))
-        axes.set_yticks(np.arange(0, st.session_state.world_height, 2))
+        #axes.set_xticks(np.arange(0, st.session_state.world_width, 2))
+        #axes.set_yticks(np.arange(0, st.session_state.world_height, 2))
 
-        st.pyplot(figure)
+        #st.pyplot(figure)
 
     # Debugging check if data processed
     else:
