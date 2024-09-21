@@ -260,7 +260,7 @@ if st.__version__ != '1.29.0':
     st.warning(f"Warning: Streamlit version is {st.__version__}")
 
 # Show the page title and description.
-st.title("Programming Assignment 4")f
+st.title("Programming Assignment 4")
 st.header(
     """
     Terrain Classifier
