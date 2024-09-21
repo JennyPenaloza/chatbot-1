@@ -275,7 +275,7 @@ if 'world_width' not in st.session_state:
 if 'world_height' not in st.session_state:
     st.session_state.world_height = 4
 
-coordinates = [(i, j) for i in range(st.session_state.world_height) for j in range(st.session_state.world_width)]
+coordinates = [(i, j) for i in range(st.session_state.world_width) for j in range(st.session_state.world_height)]
 starting_coord = st.selectbox("Select a starting coordinate: ", coordinates)
 goal_coord = st.selectbox("Select a goal coordinate: ", coordinates)
 # Initialize dataframe when starting up page using initial grid height and width
@@ -320,6 +320,7 @@ if display:
 
         start = starting_coord
         goal = goal_coord
+        print(start, goal)
         world_traversal = a_star_search(init_data, start, goal, COSTS, MOVES, heuristic)
 
         path_cost = pretty_print_path(init_data, world_traversal, start, goal, COSTS)
