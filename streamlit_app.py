@@ -189,7 +189,7 @@ def a_star_search( world: List[List[str]], start: Tuple[int, int], goal: Tuple[i
                 cost_so_far[child] = new_cost
                 frontier.append(child)
                 parent_explored[child] = current_node
-                        
+
     return None # if path is not found
 
 def pretty_print_helper(x_move, y_move, node, goal) -> str:
@@ -316,6 +316,15 @@ if display:
     # Plotting based off module 2
     if init_data is not None:
 
+        start = init_data[0][0]
+        goal = init_data[world_height-1][world_width-1]
+        world_traversal = a_star_search(init_data, start, goal, COSTS)
+
+        path = pretty_print_path(world_traversal, init_data, start, goal, COSTS)
+
+        if path > 1000:
+            no_path = st.write("No path was found")
+            
         figure = plt.figure(figsize = (4, 4))
         axes = figure.add_subplot(1, 1, 1)
 
