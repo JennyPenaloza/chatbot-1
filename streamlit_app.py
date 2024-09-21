@@ -238,7 +238,7 @@ def pretty_print_path( world: List[List[str]], path: List[Tuple[int, int]], star
     copy_world = deepcopy(world)
     move_path = movement_path(path, goal)
     i = 0
-    
+    print(path)
     for node in path:
         movement_emoji = ''
         if (node[0], node[1]) == goal and i == len(move_path):
