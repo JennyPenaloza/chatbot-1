@@ -79,7 +79,7 @@ def successor(world: List[List[str]], node: Tuple[int, int], moves: Dict[str, in
         child_x, child_y = x+move[0], y+move[1]
     
         if (0 <= child_x < len(world)) and (0 <= child_y < len(world)):
-            child_node = (child_x, child_y)
+            child_node = (child_y, child_x)
             print("CHILd: ", child_node)
             children.append(child_node)
 
