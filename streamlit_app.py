@@ -303,6 +303,7 @@ with st.sidebar:
 # Display randomized data based on user input for table height and width
 if submit:
     init_data = generate_random_world(st.session_state.world_height, st.session_state.world_width, COSTS)
+    print(init_data)
     df = pd.DataFrame(init_data, columns=[f"{i}" for i in range(st.session_state.world_width)])
     st.session_state.dataframe = df
     st.session_state.init_data = init_data
