@@ -119,7 +119,7 @@ def movement_path(path: List[Tuple[int, int]], goal: Tuple[int, int]) -> List[Tu
     """
     move_path = []
     
-    for i in range(len(path)-1):
+    for i in range(len(path)):
         if path[i] == goal:
             return move_path
             
