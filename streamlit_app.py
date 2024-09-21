@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import streamlit as st
 import random
+import pandas as pd
 
 from IPython.display import display_html
 from typing import List, Tuple, Dict, Callable
