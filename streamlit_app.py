@@ -275,8 +275,8 @@ if 'world_height' not in st.session_state:
 # Initialize dataframe when starting up page using initial grid height and width
 # Populate with random data
 if 'dataframe' not in st.session_state:
-    init_data = generate_random_world(st.session_state.grid_height, st.session_state.grid_width, COSTS)
-    df = pd.DataFrame(init_data, columns=[f"{i}" for i in range(st.session_state.grid_width)])
+    init_data = generate_random_world(st.session_state.world_height, st.session_state.world_width, COSTS)
+    df = pd.DataFrame(init_data, columns=[f"{i}" for i in range(st.session_state.world_width)])
     #st.session_state.dataframe = np.round(df, decimals=2)
     st.session_state.init_data = init_data
 
