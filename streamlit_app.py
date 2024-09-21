@@ -313,12 +313,12 @@ display = st.button("Display World and Traversal")
 if display:
 
     init_data = st.session_state.get('init_data')
-    print(init_data)
     # Plotting based off module 2
     if init_data is not None:
 
         start = (0, 0)
         goal = (st.session_state.world_height-1, st.session_state.world_width-1)
+        print(goal)
         world_traversal = a_star_search(init_data, start, goal, COSTS, MOVES, heuristic)
 
         path_cost = pretty_print_path(world_traversal, init_data, start, goal, COSTS)
