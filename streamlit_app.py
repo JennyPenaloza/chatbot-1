@@ -33,7 +33,6 @@ def generate_random_world(world_height, world_width, available_terrain):
             
         world.append(world_row)
 
-    world[world_height-1][world_width-1] = '🎁'
     return world
 
 def display_emoji_grid(emoji_grid):
