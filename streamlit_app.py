@@ -260,7 +260,7 @@ if st.__version__ != '1.29.0':
     st.warning(f"Warning: Streamlit version is {st.__version__}")
 
 # Show the page title and description.
-st.title("Programming Assignment 4")
+st.title("Programming Assignment 4")f
 st.header(
     """
     Terrain Classifier
@@ -297,6 +297,7 @@ with st.sidebar:
 # Display randomized data based on user input for table height and width
 if submit:
     init_data = generate_random_world(st.session_state.world_height, st.session_state.world_width, COSTS)
+    df = pd.DataFrame(init_data, columns=[f"{i} for i in range(st.session_state.world_width)])
 
 # Make data editable and reflect on display
 st.session_state.dataframe = st.data_editor(st.session_state.dataframe)
