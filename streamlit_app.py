@@ -80,7 +80,6 @@ def successor(world: List[List[str]], node: Tuple[int, int], moves: Dict[str, in
     
         if (0 <= child_x < len(world)) and (0 <= child_y < len(world)):
             child_node = (child_y, child_x)
-            print("CHILd: ", child_node)
             children.append(child_node)
 
     return children
@@ -181,7 +180,7 @@ def a_star_search( world: List[List[str]], start: Tuple[int, int], goal: Tuple[i
             return world_path
             
         children = successor(world, current_node, moves)
-        
+        print("CHILDREN: ", children)
         for child in children:
 
             child_cost = costs[world[child[0]][child[1]]]
