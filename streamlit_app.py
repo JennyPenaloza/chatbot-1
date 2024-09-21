@@ -276,7 +276,7 @@ if st.__version__ != '1.29.0':
 st.title("Self Check 4")
 st.header(
     """
-    Edit the camera view
+    Programming Assignment 4
     """
 )
 
@@ -296,13 +296,15 @@ if 'dataframe' not in st.session_state:
 
 with st.sidebar:
     container = st.container(border=True)   #Unify all values in sidebar
-    container.header("Grid Size")
+    container.header("World Size")
 
     container.write("Select a Width:")
     st.session_state.world_width = container.number_input("Select a Width", min_value=2, max_value=10, value=4, step=1, key="select_width", label_visibility="collapsed")
 
     container.write("Select a Height:")
     st.session_state.world_height = container.number_input("Select a Height", min_value=2, max_value=10, value=4, step=1, key="select_height", label_visibility="collapsed")
+
+    st.session_state.world_terrain = container.selectbox("Choose your terrain: ", ('Plains', 'Forest', 'Hills', 'Swamp'))
             
     submit = container.button("Submit", key="submit_button")
 
