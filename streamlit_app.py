@@ -265,7 +265,7 @@ if st.__version__ != '1.29.0':
 st.title("Programming Assignment 4")
 st.header(
     """
-    Terrain Classifier
+    World Traversal- A* Search
     """
 )
 
