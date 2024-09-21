@@ -274,7 +274,7 @@ if 'world_height' not in st.session_state:
 
 # Initialize dataframe when starting up page using initial grid height and width
 # Populate with random data
-if 'dataframe' not in st.session_state:
+if 'init_data' not in st.session_state:
     init_data = generate_random_world(st.session_state.world_height, st.session_state.world_width, COSTS)
 
 
