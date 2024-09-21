@@ -304,6 +304,7 @@ with st.sidebar:
     container.write("Select a Height:")
     st.session_state.world_height = container.number_input("Select a Height", min_value=2, max_value=10, value=4, step=1, key="select_height", label_visibility="collapsed")
 
+    container.write("#")
     st.session_state.world_terrain = container.selectbox("Terrain: ", ('Plains', 'Forest', 'Hills', 'Swamp'))
             
     submit = container.button("Submit", key="submit_button")
