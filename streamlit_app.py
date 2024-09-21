@@ -172,7 +172,7 @@ def a_star_search( world: List[List[str]], start: Tuple[int, int], goal: Tuple[i
     parent_explored = {start: None}
     cost_so_far = {start: costs[world[start[0]][start[1]]]}
     path = []
-    
+    print(world)
     while frontier:
         current_node = frontier.pop(0)
         if current_node == goal:
