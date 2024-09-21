@@ -298,7 +298,7 @@ with st.sidebar:
 if submit:
     init_data = generate_random_world(st.session_state.world_height, st.session_state.world_width, COSTS)
     df = pd.DataFrame(init_data, columns=[f"{i}" for i in range(st.session_state.world_width)])
-    st.session_state_.dataframe = df
+    st.session_state.dataframe = df
     st.session_state.init_data = init_data
 
 # Make data editable and reflect on display
