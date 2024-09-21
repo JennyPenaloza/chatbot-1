@@ -239,7 +239,6 @@ def pretty_print_path( world: List[List[str]], path: List[Tuple[int, int]], star
     copy_world = deepcopy(world)
     move_path = movement_path(path, goal)
     i = 0
-    print(path)
     for node in path:
         movement_emoji = ''
         if (node[0], node[1]) == goal and i == len(move_path):
@@ -321,8 +320,7 @@ if display:
     if init_data is not None:
 
         start = starting_coord
-        goal = (goal_coord[1], goal_coord[0])
-        print(start, goal)
+        goal = goal_coord
         world_traversal = a_star_search(init_data, start, goal, COSTS, MOVES, heuristic)
 
         path_cost = pretty_print_path(init_data, world_traversal, start, goal, COSTS)
