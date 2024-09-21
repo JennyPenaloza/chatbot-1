@@ -184,6 +184,8 @@ def a_star_search( world: List[List[str]], start: Tuple[int, int], goal: Tuple[i
         for child in children:
             print(child)
             child_cost = costs[world[child[0]][child[1]]]
+            if child_cost == 1000:
+                 continue
             new_cost = heuristic(child, goal, cost_so_far[current_node], child_cost)
 
             if ~(child in frontier) and (child not in cost_so_far or new_cost < cost_so_far[child]):
