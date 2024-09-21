@@ -273,10 +273,10 @@ if st.__version__ != '1.29.0':
     st.warning(f"Warning: Streamlit version is {st.__version__}")
 
 # Show the page title and description.
-st.title("Self Check 4")
+st.title("Programming Assignment 4")
 st.header(
     """
-    Programming Assignment 4
+    Terrain Classifier
     """
 )
 
@@ -296,7 +296,7 @@ if 'dataframe' not in st.session_state:
 
 with st.sidebar:
     container = st.container(border=True)   #Unify all values in sidebar
-    container.header("World Size")
+    container.title("World Size")
 
     container.write("Select a Width:")
     st.session_state.world_width = container.number_input("Select a Width", min_value=2, max_value=10, value=4, step=1, key="select_width", label_visibility="collapsed")
