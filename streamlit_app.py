@@ -28,8 +28,12 @@ clean_data = {
 }
 
 
-# View grid based on density
+
 def view_sensor_image(data):
+    '''
+    Plot image based on data
+    '''
+    
     figure = plt.figure(figsize=(4,4))
     axes = figure.add_subplot(1, 1, 1)
     pixels = np.array([255 - p * 255 for p in data[:-1]], dtype='uint8')
@@ -38,8 +42,11 @@ def view_sensor_image(data):
     axes.imshow(pixels, cmap='gray')
     plt.show()
 
-# Add noise to data
+
 def blur( data):
+    '''
+    Add gaussian noise to data
+    '''
     def apply_noise( value):
         if value < 0.5:
             v = random.gauss(0.30, 0.07) # (0.10, 0.05)
@@ -60,6 +67,9 @@ def blur( data):
 
 # Generate data based on given input size and data type
 def generate_data( data, n, key_label):
+    '''
+    Generate noisy data based on input size n for data icon key_label
+    '''
     labels = list(data.keys())
     labels.remove(key_label)
 
@@ -84,8 +94,11 @@ def generate_data( data, n, key_label):
     random.shuffle(result)
     return result
 
-# Create a copy of the data and separate x-values and labels
+
 def separated_data(data):
+    '''
+    Separate data into x inputs and y labels
+    '''
     y_values = []
     copy_data = copy.deepcopy(data)
     
@@ -96,8 +109,11 @@ def separated_data(data):
 
     return (copy_data, y_values)
 
-# Calculate predicted values based on input data
+
 def calculate_yhats(thetas, x_values):
+    '''
+    Calculate predicted values based on x input data and thetas
+    '''
     y_hats = []
    
     for i in range(len(x_values)):
@@ -111,8 +127,11 @@ def calculate_yhats(thetas, x_values):
                      
     return y_hats
 
-# Calculate gradient of data
+
 def derivative(j, all_thetas, data):
+    '''
+    Calculate data gradient
+    '''
     total_sum = 0.0
     x_vals, y_vals = separated_data(data)
     y_hats = calculate_yhats(all_thetas, x_vals)
@@ -123,8 +142,11 @@ def derivative(j, all_thetas, data):
         derivative_val = total_sum/len(x_vals)
     return derivative_val
 
-# Calculate error of predicted values
+
 def calculate_error(thetas, data):
+    '''
+    Calculate error from predicted y output and actual output
+    '''
     total_sum = 0.0
     x_vals, y_vals = separated_data(data)
     y_hats = calculate_yhats(thetas, x_vals)
@@ -134,8 +156,11 @@ def calculate_error(thetas, data):
     avg = (-1/len(y_vals)) * total_sum
     return avg
 
-# Train model using logarithmic regression
+
 def learn_model(data, verbose=False):
+    '''
+    Train model using logarithmic regression
+    '''
     thetas = [random.uniform(-1, 1) for i in range(len(data[0]))]
     previous_error = 0.0
     current_error = calculate_error(thetas, data)
@@ -162,8 +187,11 @@ def learn_model(data, verbose=False):
     
     return new_thetas
 
-# Use model to predict data values
+
 def apply_model(model, test_data, labeled=False):
+    '''
+    Use model to predict data values on unseen dataset
+    '''
     model = learn_model(test_data, True)
     x_vals, y_vals = separated_data(test_data)
     predicted_ys = calculate_yhats(model, x_vals)
@@ -179,8 +207,11 @@ def apply_model(model, test_data, labeled=False):
     
     return results
 
-# Plot confusion matrix of data
+
 def plot_confusion_matrix(confusion_matrix):
+    '''
+    Display confusion matrix of data
+    '''
     fig, ax = plt.subplots()
     cax = ax.matshow(confusion_matrix, cmap=plt.cm.Blues)
     plt.colorbar(cax)
@@ -193,13 +224,17 @@ def plot_confusion_matrix(confusion_matrix):
 
     plt.show()
 
-# Calculate confusion matrix and error rate of model
+
 def evaluate(results):
+    '''
+    Calculate confusion matrix and error rate of model
+    '''
     true_pos = 0
     false_pos = 0
     true_neg = 0
     false_neg = 0
-    
+
+    # Track predicted value with actual value
     for i in range(len(results)):
         actual_y, predicted_y = results[i]
         
@@ -218,3 +253,32 @@ def evaluate(results):
     print("Error rate: ", error_rate, "%")
     plot_confusion_matrix(confusion_matrix)
     return error_rate
+
+
+
+
+
+
+
+
+#--------------------------------------------------------------------------
+# Actual streamlit processes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
