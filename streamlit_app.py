@@ -23,15 +23,17 @@ def generate_random_world(world_height, world_width, available_terrain):
     """
     world = []
     terrain_keys = list(available_terrain.keys())
-    print(terrain_keys)
+    
     for i in range(world_height):
         world_row = []
         for j in range(world_width):
+            
             current_choice = random.choice(terrain_keys)
-            print(current_choice)
             world_row.append(current_choice)
             
         world.append(world_row)
+
+    world[world_height-1][world_widht-1] = '🎁'
     return world
 
 def display_emoji_grid(emoji_grid):
