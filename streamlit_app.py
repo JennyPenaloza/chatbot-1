@@ -252,7 +252,7 @@ def pretty_print_path( world: List[List[str]], path: List[Tuple[int, int]], star
         i += 1
         
     traversed_world = display_emoji_grid(copy_world)
-    return path_cost, traversed_world
+    return path_cost
 #--------------------------------------------------------------------------
 # Actual streamlit processes
 
@@ -320,7 +320,7 @@ if display:
         goal = init_data[st.session_state.world_height-1][st.session_state.world_width-1]
         world_traversal = a_star_search(init_data, start, goal, COSTS, MOVES, heuristic)
 
-        path_cost, traversed_world = pretty_print_path(world_traversal, init_data, start, goal, COSTS)
+        path_cost = pretty_print_path(world_traversal, init_data, start, goal, COSTS)
 
         if path > 1000:
             no_path = st.write("No path was found")
