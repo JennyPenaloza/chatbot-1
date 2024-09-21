@@ -319,7 +319,7 @@ if display:
         goal = (st.session_state.world_height-1, st.session_state.world_width-1)
         world_traversal = a_star_search(init_data, start, goal, COSTS, MOVES, heuristic)
 
-        path_cost = pretty_print_path(world_traversal, init_data, start, goal, COSTS)
+        path_cost = pretty_print_path(init_data, world_traversal, start, goal, COSTS)
 
         if path > 1000:
             no_path = st.write("No path was found")
