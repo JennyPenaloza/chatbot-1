@@ -275,6 +275,9 @@ if 'world_width' not in st.session_state:
 if 'world_height' not in st.session_state:
     st.session_state.world_height = 4
 
+coordinates = [(i, j) for i in range(world_width) for j in range(world_height)]
+starting_coord = st.selectbox("Select a starting coordinate: ", coordinates)
+goal_coord = st.selectbox("Select a goal coordinate: ", coordinates)
 # Initialize dataframe when starting up page using initial grid height and width
 # Populate with random data
 if 'dataframe' not in st.session_state:
@@ -321,7 +324,7 @@ if display:
 
         path_cost = pretty_print_path(init_data, world_traversal, start, goal, COSTS)
 
-        if path > 1000:
+        if path_cost > 1000:
             no_path = st.write("No path was found")
             
         figure = plt.figure(figsize = (4, 4))
