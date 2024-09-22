@@ -295,7 +295,6 @@ if 'world_width' not in st.session_state:
 if 'world_height' not in st.session_state:
     st.session_state.world_height = 4
 
-st.session_state.coordinates = [(j, i) for i in range(st.session_state.world_height) for j in range(st.session_state.world_width)]
 #starting_coord = st.selectbox("Select a starting coordinate: ", coordinates)
 #goal_coord = st.selectbox("Select a goal coordinate: ", coordinates)
 # Initialize dataframe when starting up page using initial grid height and width
@@ -304,6 +303,8 @@ st.session_state.coordinates = [(j, i) for i in range(st.session_state.world_hei
 if 'world' not in st.session_state:
     st.session_state.world = generate_random_world(st.session_state.world_height, st.session_state.world_width, COSTS)
     st.session_state.emoji_data = display_emoji_grid(st.session_state.world)
+    st.session_state.coordinates = [(j, i) for i in range(st.session_state.world_height) for j in range(st.session_state.world_width)]
+
 
 st.markdown(st.session_state.emoji_data, unsafe_allow_html=True)
 
@@ -324,16 +325,17 @@ with st.sidebar:
     container2.title("Location Objective")
     
     container2.write("Select a Starting Coordinate: ")
-    st.session_state.starting_coord = container2.selectbox("Starting Point", coordinates, label_visibility="collapsed")
+    st.session_state.starting_coord = container2.selectbox("Starting Point", st.session_state.coordinates, label_visibility="collapsed")
     
     container2.write("Select a Goal Coordinate: ")
-    st.session_state.goal_coord = container2.selectbox("Goal Point", coordinates, label_visibility="collapsed")
+    st.session_state.goal_coord = container2.selectbox("Goal Point", st.session_state.coordinates, label_visibility="collapsed")
 
     find_path = container2.button("Find Path", key="find_path_button")
 
 # Display randomized data based on user input for table height and width
 if submit:
     st.session_state.world = generate_random_world(st.session_state.world_height, st.session_state.world_width, COSTS)
+    st.session_state.coordinates = [(j, i) for i in range(st.session_state.world_height) for j in range(st.session_state.world_width)]
     st.session_state.emoji_data = display_emoji_grid(st.session_state.world)
     st.markdown(st.session_state.emoji_data, unsafe_allow_html=True)
 
