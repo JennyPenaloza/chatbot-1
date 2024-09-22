@@ -254,7 +254,7 @@ def pretty_print_path( world: List[List[str]], path: List[Tuple[int, int]], star
         i += 1
         
     traversed_world = display_emoji_grid(copy_world)
-    return path_cost, copy world
+    return path_cost, copy_world
 #--------------------------------------------------------------------------
 # Actual streamlit processes
 
