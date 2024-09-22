@@ -270,7 +270,7 @@ st.header(
     World Traversal- A* Search
     """
 )
-costs_df = pd.DataFrame(list(COSTS.items()), columns=['Terrain', 'Movement Cost']
+costs_df = pd.DataFrame(list(COSTS.items()), columns=['Terrain', 'Movement Cost'])
 st.table(costs_df)
 
 # Create initial grid height and width
