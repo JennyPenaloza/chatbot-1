@@ -295,7 +295,7 @@ if 'world_width' not in st.session_state:
 if 'world_height' not in st.session_state:
     st.session_state.world_height = 4
 
-coordinates = [(i, j) for i in range(st.session_state.world_height) for j in range(st.session_state.world_width)]
+coordinates = [(j, i) for i in range(st.session_state.world_height) for j in range(st.session_state.world_width)]
 #starting_coord = st.selectbox("Select a starting coordinate: ", coordinates)
 #goal_coord = st.selectbox("Select a goal coordinate: ", coordinates)
 # Initialize dataframe when starting up page using initial grid height and width
@@ -303,7 +303,7 @@ coordinates = [(i, j) for i in range(st.session_state.world_height) for j in ran
 
 if 'world' not in st.session_state:
     st.session_state.world = generate_random_world(st.session_state.world_height, st.session_state.world_width, COSTS)
-    coordinates = [(i, j) for i in range(st.session_state.world_height) for j in range(st.session_state.world_width)]
+    coordinates = [(j, i) for i in range(st.session_state.world_height) for j in range(st.session_state.world_width)]
 
 emoji_data = display_emoji_grid(st.session_state.world)
 st.markdown(emoji_data, unsafe_allow_html=True)
@@ -345,8 +345,11 @@ if find_path:
     # Plotting based off module 2
     if init_data is not None:
 
-        start = st.session_state.starting_coord
-        goal = st.session_state.goal_coord
+        reverse_start = st.session_state.starting_coord
+        reverse_goal = st.session_state.goal_coord
+        
+        start = (reverse_start[1], reverse_start[0])
+        goal = (reverse_goal[1], reverse_goal[0])
         world_traversal = a_star_search(init_data, start, goal, COSTS, MOVES, heuristic)
         print(world_traversal)
         path_cost = 0
