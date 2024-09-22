@@ -289,26 +289,20 @@ if on:
         """
     )
 
-# Create initial grid height and width
+# Create initial session variables
 if 'world_width' not in st.session_state:
     st.session_state.world_width = 4
 if 'world_height' not in st.session_state:
     st.session_state.world_height = 4
-
-#starting_coord = st.selectbox("Select a starting coordinate: ", coordinates)
-#goal_coord = st.selectbox("Select a goal coordinate: ", coordinates)
-# Initialize dataframe when starting up page using initial grid height and width
-# Populate with random data
-
 if 'world' not in st.session_state:
     st.session_state.world = generate_random_world(st.session_state.world_height, st.session_state.world_width, COSTS)
+if 'emoji_data' not in st.session_state:
     st.session_state.emoji_data = display_emoji_grid(st.session_state.world)
+if 'coordinates' not in st.session_state:
     st.session_state.coordinates = [(j, i) for i in range(st.session_state.world_height) for j in range(st.session_state.world_width)]
 
 
 st.markdown(st.session_state.emoji_data, unsafe_allow_html=True)
-
-
 with st.sidebar:
     container = st.container(border=True)   #Unify all values in sidebar
     container.title("World Size")
