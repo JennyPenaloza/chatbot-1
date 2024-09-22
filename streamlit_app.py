@@ -310,6 +310,7 @@ if submit:
     st.session_state.init_data = init_data
 
 # Make data editable and reflect on display
+st.dataframe(st.session_state.dataframe)
 st.session_state.init_data = st.session_state.dataframe.values
 
 display = st.button("Display World and Traversal")
