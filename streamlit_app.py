@@ -270,7 +270,7 @@ st.header(
     World Traversal- A* Search
     """
 )
-st.table(COSTS)
+st.table(pd.DataFrame(COSTS, columns=['Terrain', 'Movement Cost'])
 
 # Create initial grid height and width
 if 'world_width' not in st.session_state:
