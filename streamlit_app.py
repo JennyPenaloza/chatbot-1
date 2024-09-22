@@ -309,7 +309,6 @@ if 'dataframe' not in st.session_state:
     st.session_state.dataframe = df
     st.session_state.init_data = init_data
 
-st.sidebar.title("World/Traversal Parameters")
 with st.sidebar:
     container = st.container(border=True)   #Unify all values in sidebar
     container.title("World Size")
@@ -355,6 +354,7 @@ if find_path:
         start = st.session_state.starting_coord
         goal = st.session_state.goal_coord
         world_traversal = a_star_search(init_data, start, goal, COSTS, MOVES, heuristic)
+        print(world_traversal)
         path_cost = 0
         
         if world_traversal is not None:
@@ -366,10 +366,6 @@ if find_path:
         if path_cost > 1000 or world_traversal is None:
             no_path = st.write("No path was found")
 
-    
-    # Debugging check if data processed
-    else:
-        st.error("Please press submit before attempting to display data.")
 
 
 
