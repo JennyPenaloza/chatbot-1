@@ -304,10 +304,11 @@ with st.sidebar:
     container.write("Select a Height:")
     st.session_state.world_height = container.number_input("Select a Height", min_value=2, max_value=10, value=4, step=1, key="select_height", label_visibility="collapsed")
 
-    container.write("Select a Starting Coordinate: ")
-    st.session_state.starting_coord = st.selectbox("Starting Point", coordinates, lavel_visibility="collapsed")
-    container.write("Select a Goal Coordinate: ")
-    st.session_state.goal_coord = st.selectbox("Goal Point", coordinates, lavel_visibility="collapsed")
+    container2 = st.container(border=True)
+    container2.write("Select a Starting Coordinate: ")
+    container2.session_state.starting_coord = st.selectbox("Starting Point", coordinates, lavel_visibility="collapsed")
+    container2.write("Select a Goal Coordinate: ")
+    container2.session_state.goal_coord = st.selectbox("Goal Point", coordinates, lavel_visibility="collapsed")
     
     submit = container.button("Submit", key="submit_button")
 
