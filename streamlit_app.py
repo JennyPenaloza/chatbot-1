@@ -359,7 +359,7 @@ if find_path:
             st.session_state.emoji_data = display_emoji_grid(found_goal_world)
 
             st.write(f"Path was found! Total cost is {path_cost}")
-            st.markdown(emoji_data, unsafe_allow_html=True)
+            st.markdown(st.session_state.emoji_data, unsafe_allow_html=True)
 
 
 
