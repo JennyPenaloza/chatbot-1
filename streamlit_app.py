@@ -286,14 +286,16 @@ if on:
         4. View Results: The optimal path from start to goal, along with its total cost and visual representation,
            will be displayed below.
         5. The travel cost for each terrain is shown above.
+        
+        Note: Coordinates will be in (x, y) format: (left-right, up-down)
         """
     )
 
 # Create initial session variables
 if 'world_width' not in st.session_state:
-    st.session_state.world_width = 4
+    st.session_state.world_width = 7
 if 'world_height' not in st.session_state:
-    st.session_state.world_height = 4
+    st.session_state.world_height = 7
 if 'world' not in st.session_state:
     st.session_state.world = generate_random_world(st.session_state.world_height, st.session_state.world_width, COSTS)
 if 'emoji_data' not in st.session_state:
@@ -301,22 +303,24 @@ if 'emoji_data' not in st.session_state:
 if 'coordinates' not in st.session_state:
     st.session_state.coordinates = [(j, i) for i in range(st.session_state.world_height) for j in range(st.session_state.world_width)]
 
-emoji_display_placeholder = st.empty()
+
+# Maintain instance of emoji_data even when updating coordinates
+emoji_display_placeholder = st.empty()    
 emoji_display_placeholder.markdown(st.session_state.emoji_data, unsafe_allow_html=True)
 
 with st.sidebar:
-    container = st.container(border=True)   #Unify all values in sidebar
+    container = st.container(border=True)   # Unify all world generation values
     container.title("World Size")
 
     container.write("Select a Width:")
-    st.session_state.world_width = container.number_input("Select a Width", min_value=2, max_value=40, value=4, step=1, key="select_width", label_visibility="collapsed")
+    st.session_state.world_width = container.number_input("Select a Width", min_value=2, max_value=40, value=7, step=1, key="select_width", label_visibility="collapsed")
 
     container.write("Select a Height:")
-    st.session_state.world_height = container.number_input("Select a Height", min_value=2, max_value=40, value=4, step=1, key="select_height", label_visibility="collapsed")
+    st.session_state.world_height = container.number_input("Select a Height", min_value=2, max_value=40, value=7, step=1, key="select_height", label_visibility="collapsed")
     
     submit = container.button("Generate World", key="submit_button")
 
-    container2 = st.container(border=True)
+    container2 = st.container(border=True)    # Unify all coordinate values 
     container2.title("Location Objective")
     
     container2.write("Select a Starting Coordinate: ")
@@ -343,12 +347,14 @@ if find_path:
 
         reverse_start = st.session_state.starting_coord
         reverse_goal = st.session_state.goal_coord
-        
+
+        # Swap coordinates to program friendly format
         start = (reverse_start[1], reverse_start[0])
         goal = (reverse_goal[1], reverse_goal[0])
         world_traversal = a_star_search(init_data, start, goal, COSTS, MOVES, heuristic)
         path_cost = 0
 
+        # Paths greater than 1000 are technically not real- mountains are impassable
         if path_cost >= 1000:
             no_path = st.write("No path was found")
 
