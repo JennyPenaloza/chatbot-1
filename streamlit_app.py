@@ -354,7 +354,10 @@ if find_path:
         print(world_traversal)
         path_cost = 0
 
-        if path_cost >= 1000 or world_traversal is None:
+        if path_cost >= 1000:
+            no_path = st.write("No path was found")
+
+        elif world_traversal is None:
             no_path = st.write("No path was found")
             
         elif world_traversal is not None:
