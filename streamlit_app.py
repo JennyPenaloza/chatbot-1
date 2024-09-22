@@ -354,10 +354,14 @@ if find_path:
         # Check if starting or ending on mountain
         if init_data[reverse_start[1]][reverse_start[0]] == '🌋':
             st.write("Invalid starting location, please pick a new coordinate.")
+            st.session_state.emoji_data = display_emoji_grid(init_data)
+            emoji_display_placeholder.markdown(st.session_state.emoji_data, unsafe_allow_html=True)
             st.stop()
 
         if init_data[reverse_goal[1]][reverse_goal[0]] == '🌋':
             st.write("Invalid goal location, please pick a new coordinate.")
+            st.session_state.emoji_data = display_emoji_grid(init_data)
+            emoji_display_placeholder.markdown(st.session_state.emoji_data, unsafe_allow_html=True)
             st.stop()
         
         world_traversal = a_star_search(init_data, start, goal, COSTS, MOVES, heuristic)
