@@ -309,7 +309,7 @@ if 'dataframe' not in st.session_state:
     st.session_state.dataframe = df
     st.session_state.init_data = init_data
 
-
+st.sidebar.title("World/Traversal Parameters")
 with st.sidebar:
     container = st.container(border=True)   #Unify all values in sidebar
     container.title("World Size")
