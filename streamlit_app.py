@@ -295,7 +295,7 @@ if 'world_width' not in st.session_state:
 if 'world_height' not in st.session_state:
     st.session_state.world_height = 4
 
-coordinates = [(j, i) for i in range(st.session_state.world_height) for j in range(st.session_state.world_width)]
+st.session_state.coordinates = [(j, i) for i in range(st.session_state.world_height) for j in range(st.session_state.world_width)]
 #starting_coord = st.selectbox("Select a starting coordinate: ", coordinates)
 #goal_coord = st.selectbox("Select a goal coordinate: ", coordinates)
 # Initialize dataframe when starting up page using initial grid height and width
@@ -303,10 +303,9 @@ coordinates = [(j, i) for i in range(st.session_state.world_height) for j in ran
 
 if 'world' not in st.session_state:
     st.session_state.world = generate_random_world(st.session_state.world_height, st.session_state.world_width, COSTS)
-    coordinates = [(j, i) for i in range(st.session_state.world_height) for j in range(st.session_state.world_width)]
+    st.session_state.emoji_data = display_emoji_grid(st.session_state.world)
 
-emoji_data = display_emoji_grid(st.session_state.world)
-st.markdown(emoji_data, unsafe_allow_html=True)
+st.markdown(st.session_state.emoji_data, unsafe_allow_html=True)
 
 
 with st.sidebar:
@@ -335,8 +334,8 @@ with st.sidebar:
 # Display randomized data based on user input for table height and width
 if submit:
     st.session_state.world = generate_random_world(st.session_state.world_height, st.session_state.world_width, COSTS)
-    emoji_data = display_emoji_grid(st.session_state.world)
-    st.markdown(emoji_data, unsafe_allow_html=True)
+    st.session_state.emoji_data = display_emoji_grid(st.session_state.world)
+    st.markdown(st.session_state.emoji_data, unsafe_allow_html=True)
 
 
 if find_path:
@@ -351,7 +350,6 @@ if find_path:
         start = (reverse_start[1], reverse_start[0])
         goal = (reverse_goal[1], reverse_goal[0])
         world_traversal = a_star_search(init_data, start, goal, COSTS, MOVES, heuristic)
-        print(world_traversal)
         path_cost = 0
 
         if path_cost >= 1000:
@@ -362,7 +360,7 @@ if find_path:
             
         elif world_traversal is not None:
             path_cost, found_goal_world = pretty_print_path(init_data, world_traversal, start, goal, COSTS)
-            emoji_data = display_emoji_grid(found_goal_world)
+            st.session_state.emoji_data = display_emoji_grid(found_goal_world)
 
             st.write(f"Path was found! Total cost is {path_cost}")
             st.markdown(emoji_data, unsafe_allow_html=True)
