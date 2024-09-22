@@ -179,7 +179,6 @@ def a_star_search( world: List[List[str]], start: Tuple[int, int], goal: Tuple[i
             return world_path
             
         children = successor(world, current_node, moves)
-        print("CHILDREN: ", children)
         for child in children:
 
             child_cost = costs[world[child[0]][child[1]]]
