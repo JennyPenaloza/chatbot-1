@@ -321,8 +321,8 @@ if display:
     # Plotting based off module 2
     if init_data is not None:
 
-        start = (starting_coord[1], starting_coord[0])
-        goal = (goal_coord[1], goal_coord[0])
+        start = starting_coord
+        goal = goal_coord
         world_traversal = a_star_search(init_data, start, goal, COSTS, MOVES, heuristic)
         path_cost = 0
         
