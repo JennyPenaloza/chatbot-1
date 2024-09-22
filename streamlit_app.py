@@ -303,9 +303,9 @@ coordinates = [(i, j) for i in range(st.session_state.world_height) for j in ran
 # Populate with random data
 
 if 'world' not in st.session_state:
-    st.session_state_world = generate_random_world(st.session_state.world_height, st.session_state.world_width, COSTS)
+    st.session_state.world = generate_random_world(st.session_state.world_height, st.session_state.world_width, COSTS)
 
-emoji_data = display_emoji_grid(st.session_state_world)
+emoji_data = display_emoji_grid(st.session_state.world)
 st.markdown(emoji_data, unsafe_allow_html=True)
 
 
@@ -334,8 +334,8 @@ with st.sidebar:
 
 # Display randomized data based on user input for table height and width
 if submit:
-    st.session_state_world = generate_random_world(st.session_state.world_height, st.session_state.world_width, COSTS)
-    emoji_data = display_emoji_grid(st.session_state_world)
+    st.session_state.world = generate_random_world(st.session_state.world_height, st.session_state.world_width, COSTS)
+    emoji_data = display_emoji_grid(st.session_state.world)
     st.markdown(emoji_data, unsafe_allow_html=True)
 
 
