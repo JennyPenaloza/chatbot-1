@@ -352,7 +352,7 @@ if find_path:
         start = (reverse_start[1], reverse_start[0])
         goal = (reverse_goal[1], reverse_goal[0])
 
-        if init_data[reverse_start[1], reverse_start[0]] == '🌋'
+        if init_data[reverse_start[1], reverse_start[0]] == '🌋':
             st.write("Invalid starting location, please pick a new coordinate.")
         
         world_traversal = a_star_search(init_data, start, goal, COSTS, MOVES, heuristic)
