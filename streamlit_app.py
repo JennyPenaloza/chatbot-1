@@ -305,12 +305,15 @@ with st.sidebar:
     st.session_state.world_height = container.number_input("Select a Height", min_value=2, max_value=10, value=4, step=1, key="select_height", label_visibility="collapsed")
 
     container2 = st.container(border=True)
+    container2.title("Location Objective")
+    
     container2.write("Select a Starting Coordinate: ")
     container2.session_state.starting_coord = container2.selectbox("Starting Point", coordinates, label_visibility="collapsed")
+    
     container2.write("Select a Goal Coordinate: ")
     container2.session_state.goal_coord = container2.selectbox("Goal Point", coordinates, label_visibility="collapsed")
     
-    submit = container2.button("Submit", key="submit_button")
+    submit = st.button("Submit", key="submit_button")
 
 # Display randomized data based on user input for table height and width
 if submit:
