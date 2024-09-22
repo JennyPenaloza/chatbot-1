@@ -319,6 +319,8 @@ with st.sidebar:
 
     container.write("Select a Height:")
     st.session_state.world_height = container.number_input("Select a Height", min_value=2, max_value=10, value=4, step=1, key="select_height", label_visibility="collapsed")
+    
+    submit = container.button("Generate World", key="submit_button")
 
     container2 = st.container(border=True)
     container2.title("Location Objective")
@@ -328,8 +330,8 @@ with st.sidebar:
     
     container2.write("Select a Goal Coordinate: ")
     container2.session_state.goal_coord = container2.selectbox("Goal Point", coordinates, label_visibility="collapsed")
-    
-    submit = container2.button("Find Path", key="submit_button")
+
+    find_path = container2.button("Find Path", key="find_path_button")
 
 # Display randomized data based on user input for table height and width
 if submit:
@@ -343,9 +345,8 @@ if submit:
 st.dataframe(st.session_state.dataframe)
 st.session_state.init_data = st.session_state.dataframe.values
 
-display = st.button("Display World and Traversal")
 
-if display:
+if find_path:
 
     init_data = st.session_state.get('init_data')
     # Plotting based off module 2
