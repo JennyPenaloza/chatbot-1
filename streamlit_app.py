@@ -270,6 +270,7 @@ st.header(
     World Traversal- A* Search
     """
 )
+st.table(COSTS)
 
 # Create initial grid height and width
 if 'world_width' not in st.session_state:
@@ -329,6 +330,7 @@ if display:
         if world_traversal is not None:
             path_cost, found_goal_world = pretty_print_path(init_data, world_traversal, start, goal, COSTS)
             df_goal = pd.DataFrame(found_goal_world, columns=[f"{i}" for i in range(st.session_state.world_width)])
+            path_found = st.write(f"Path was found! Total cost is: {path_cost}")
             st.dataframe(df_goal)
 
         if path_cost > 1000 or world_traversal is None:
