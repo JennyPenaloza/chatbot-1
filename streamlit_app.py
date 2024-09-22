@@ -302,12 +302,10 @@ coordinates = [(i, j) for i in range(st.session_state.world_height) for j in ran
 #goal_coord = st.selectbox("Select a goal coordinate: ", coordinates)
 # Initialize dataframe when starting up page using initial grid height and width
 # Populate with random data
-if 'dataframe' not in st.session_state:
-    init_data = generate_random_world(st.session_state.world_height, st.session_state.world_width, COSTS)
-    st.write(display_emoji_grid(init_data))
-    df = pd.DataFrame(init_data, columns=[f"{i}" for i in range(st.session_state.world_width)])
-    st.session_state.dataframe = df
-    st.session_state.init_data = init_data
+
+init_data = generate_random_world(st.session_state.world_height, st.session_state.world_width, COSTS)
+st.write(display_emoji_grid(init_data))
+
 
 with st.sidebar:
     container = st.container(border=True)   #Unify all values in sidebar
