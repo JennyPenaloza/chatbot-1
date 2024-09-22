@@ -281,8 +281,8 @@ if 'world_height' not in st.session_state:
     st.session_state.world_height = 4
 
 coordinates = [(i, j) for i in range(st.session_state.world_height) for j in range(st.session_state.world_width)]
-starting_coord = st.selectbox("Select a starting coordinate: ", coordinates)
-goal_coord = st.selectbox("Select a goal coordinate: ", coordinates)
+#starting_coord = st.selectbox("Select a starting coordinate: ", coordinates)
+#goal_coord = st.selectbox("Select a goal coordinate: ", coordinates)
 # Initialize dataframe when starting up page using initial grid height and width
 # Populate with random data
 if 'dataframe' not in st.session_state:
@@ -301,7 +301,9 @@ with st.sidebar:
 
     container.write("Select a Height:")
     st.session_state.world_height = container.number_input("Select a Height", min_value=2, max_value=10, value=4, step=1, key="select_height", label_visibility="collapsed")
-            
+    
+    st.session_state.starting_coord = st.selectbox("Select a starting coordinate: ", coordinates)
+    st.session_state.goal_coord = st.selectbox("Select a goal coordinate: ", coordinates)
     submit = container.button("Submit", key="submit_button")
 
 # Display randomized data based on user input for table height and width
@@ -324,8 +326,8 @@ if display:
     # Plotting based off module 2
     if init_data is not None:
 
-        start = starting_coord
-        goal = goal_coord
+        start = st.session_state.starting_coord
+        goal = st.session_state.goal_coord
         world_traversal = a_star_search(init_data, start, goal, COSTS, MOVES, heuristic)
         path_cost = 0
         
