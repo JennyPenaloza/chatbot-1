@@ -302,7 +302,6 @@ if 'coordinates' not in st.session_state:
     st.session_state.coordinates = [(j, i) for i in range(st.session_state.world_height) for j in range(st.session_state.world_width)]
 
 
-st.markdown(st.session_state.emoji_data, unsafe_allow_html=True)
 with st.sidebar:
     container = st.container(border=True)   #Unify all values in sidebar
     container.title("World Size")
