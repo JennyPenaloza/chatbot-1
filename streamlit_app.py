@@ -288,7 +288,7 @@ coordinates = [(i, j) for i in range(st.session_state.world_height) for j in ran
 # Populate with random data
 if 'dataframe' not in st.session_state:
     init_data = generate_random_world(st.session_state.world_height, st.session_state.world_width, COSTS)
-    st.text(display_emoji_grid(init_data))
+    st.write(display_emoji_grid(init_data))
     df = pd.DataFrame(init_data, columns=[f"{i}" for i in range(st.session_state.world_width)])
     st.session_state.dataframe = df
     st.session_state.init_data = init_data
@@ -305,9 +305,9 @@ with st.sidebar:
     st.session_state.world_height = container.number_input("Select a Height", min_value=2, max_value=10, value=4, step=1, key="select_height", label_visibility="collapsed")
 
     container.write("Select a Starting Coordinate: ")
-    st.session_state.starting_coord = st.selectbox("Starting Point", coordinates)
+    st.session_state.starting_coord = st.selectbox("Starting Point", coordinates, lavel_visibility="collapsed")
     container.write("Select a Goal Coordinate: ")
-    st.session_state.goal_coord = st.selectbox("Goal Point", coordinates)
+    st.session_state.goal_coord = st.selectbox("Goal Point", coordinates, lavel_visibility="collapsed")
     
     submit = container.button("Submit", key="submit_button")
 
