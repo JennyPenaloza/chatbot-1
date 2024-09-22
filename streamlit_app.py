@@ -277,6 +277,20 @@ st.text("The following is a list of possible terrain and their associated moveme
 costs_df = pd.DataFrame(list(costs_string.items()), columns=['Terrain', 'Movement Cost'])
 st.table(costs_df)
 
+on = st.toggle("How To Play:")
+
+if on:
+    st.write(
+        """
+        1. Select the size of the world for generation.
+        2. Set Start and Goal: Use the sidebar to select the start and goal coordinates from the pathfinding.
+        3. Find Path: Click the 'Find Path' button in the sidebar after setting the coordinates.
+        4. View Results: The optimal path from start to goal, along with its total cost and visual representation,
+           will be displayed below.
+        5. The travel cost for each terrain is shown above.
+        """
+    )
+
 # Create initial grid height and width
 if 'world_width' not in st.session_state:
     st.session_state.world_width = 4
@@ -315,7 +329,7 @@ with st.sidebar:
     container2.write("Select a Goal Coordinate: ")
     container2.session_state.goal_coord = container2.selectbox("Goal Point", coordinates, label_visibility="collapsed")
     
-    submit = container2.button("Submit", key="submit_button")
+    submit = container2.button("Find Path", key="submit_button")
 
 # Display randomized data based on user input for table height and width
 if submit:
