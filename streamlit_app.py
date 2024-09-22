@@ -254,7 +254,7 @@ def pretty_print_path( world: List[List[str]], path: List[Tuple[int, int]], star
         i += 1
         
     traversed_world = display_emoji_grid(copy_world)
-    return path_cost
+    return path_cost, copy world
 #--------------------------------------------------------------------------
 # Actual streamlit processes
 
@@ -327,25 +327,14 @@ if display:
         path_cost = 0
         
         if world_traversal is not None:
-            path_cost = pretty_print_path(init_data, world_traversal, start, goal, COSTS)
+            path_cost, found_goal_world = pretty_print_path(init_data, world_traversal, start, goal, COSTS)
+            df_goal = pd.DataFrame(found_goal_world, columns=[f"{i}" for i in range(st.session_state.world_width)])
+            st.dataframe(df_goal)
 
         if path_cost > 1000 or world_traversal is None:
             no_path = st.write("No path was found")
-            
-        figure = plt.figure(figsize = (4, 4))
-        axes = figure.add_subplot(1, 1, 1)
 
-        #pixels = np.array([255 - p * 255 for p in init_data], dtype='uint8')
-        #pixels = pixels.reshape((st.session_state.world_height, st.session_state.world_width))
-
-        #axes.set_title( "Camera View")
-        #axes.imshow(pixels, cmap='gray')
-
-        #axes.set_xticks(np.arange(0, st.session_state.world_width, 2))
-        #axes.set_yticks(np.arange(0, st.session_state.world_height, 2))
-
-        #st.pyplot(figure)
-
+    
     # Debugging check if data processed
     else:
         st.error("Please press submit before attempting to display data.")
