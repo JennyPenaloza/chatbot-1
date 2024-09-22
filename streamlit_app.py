@@ -256,6 +256,7 @@ def pretty_print_path( world: List[List[str]], path: List[Tuple[int, int]], star
     traversed_world = display_emoji_grid(copy_world)
     return path_cost, copy_world
 #--------------------------------------------------------------------------
+# OH 40min for assingment
 # Actual streamlit processes
 
 
@@ -303,9 +304,10 @@ with st.sidebar:
     st.session_state.world_height = container.number_input("Select a Height", min_value=2, max_value=10, value=4, step=1, key="select_height", label_visibility="collapsed")
 
     container.write("Select a Starting Coordinate: ")
-    st.session_state.starting_coord = st.selectbox("", coordinates)
+    st.session_state.starting_coord = st.selectbox("Starting Point", coordinates)
     container.write("Select a Goal Coordinate: ")
-    st.session_state.goal_coord = st.selectbox("", coordinates)
+    st.session_state.goal_coord = st.selectbox("Goal Point", coordinates)
+    
     submit = container.button("Submit", key="submit_button")
 
 # Display randomized data based on user input for table height and width
