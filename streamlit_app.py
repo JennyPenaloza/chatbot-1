@@ -324,7 +324,8 @@ if display:
         start = (starting_coord[1], starting_coord[0])
         goal = (goal_coord[1], goal_coord[0])
         world_traversal = a_star_search(init_data, start, goal, COSTS, MOVES, heuristic)
-
+        path_cost = 0
+        
         if world_traversal is not None:
             path_cost = pretty_print_path(init_data, world_traversal, start, goal, COSTS)
 
