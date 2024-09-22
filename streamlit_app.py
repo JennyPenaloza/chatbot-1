@@ -277,7 +277,7 @@ if 'world_width' not in st.session_state:
 if 'world_height' not in st.session_state:
     st.session_state.world_height = 4
 
-coordinates = [(i, j) for i in range(st.session_state.world_width) for j in range(st.session_state.world_height)]
+coordinates = [(j, i) for i in range(st.session_state.world_width) for j in range(st.session_state.world_height)]
 starting_coord = st.selectbox("Select a starting coordinate: ", coordinates)
 goal_coord = st.selectbox("Select a goal coordinate: ", coordinates)
 # Initialize dataframe when starting up page using initial grid height and width
