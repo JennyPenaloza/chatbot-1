@@ -325,9 +325,10 @@ if display:
         goal = (goal_coord[1], goal_coord[0])
         world_traversal = a_star_search(init_data, start, goal, COSTS, MOVES, heuristic)
 
-        path_cost = pretty_print_path(init_data, world_traversal, start, goal, COSTS)
+        if world_traversal is not None:
+            path_cost = pretty_print_path(init_data, world_traversal, start, goal, COSTS)
 
-        if path_cost > 1000:
+        if path_cost > 1000 or world_traversal is None:
             no_path = st.write("No path was found")
             
         figure = plt.figure(figsize = (4, 4))
