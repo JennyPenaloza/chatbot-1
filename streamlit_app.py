@@ -302,9 +302,10 @@ coordinates = [(i, j) for i in range(st.session_state.world_height) for j in ran
 # Initialize dataframe when starting up page using initial grid height and width
 # Populate with random data
 
-init_data = generate_random_world(st.session_state.world_height, st.session_state.world_width, COSTS)
-emoji_data = display_emoji_grid(init_data)
+if 'world' not in st.session_state:
+    st.session_state_world = generate_random_world(st.session_state.world_height, st.session_state.world_width, COSTS)
 
+emoji_data = display_emoji_grid(st.session_state_world)
 st.markdown(emoji_data, unsafe_allow_html=True)
 
 
@@ -333,14 +334,14 @@ with st.sidebar:
 
 # Display randomized data based on user input for table height and width
 if submit:
-    init_data = generate_random_world(st.session_state.world_height, st.session_state.world_width, COSTS)
-    emoji_data = display_emoji_grid(init_data)
+    st.session_state_world = generate_random_world(st.session_state.world_height, st.session_state.world_width, COSTS)
+    emoji_data = display_emoji_grid(st.session_state_world)
     st.markdown(emoji_data, unsafe_allow_html=True)
 
 
 if find_path:
 
-    init_data = st.session_state.get('init_data')
+    init_data = st.session_state.world
     # Plotting based off module 2
     if init_data is not None:
 
