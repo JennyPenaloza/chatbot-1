@@ -53,8 +53,7 @@ def display_emoji_grid(emoji_grid):
     
     html += '</table>'
     
-    # Display the HTML table
-    display_html(html, raw=True)
+    return html
 
 MOVES = [(0,-1), (1,0), (0,1), (-1,0)]
 COSTS = { '🌾': 1, '🌲': 3, '⛰': 5, '🐊': 7, '🌋': 1000}
