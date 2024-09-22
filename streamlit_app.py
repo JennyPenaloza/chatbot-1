@@ -270,7 +270,7 @@ st.header(
     World Traversal- A* Search
     """
 )
-st.text("The following is a list of possible terrain and their associated movement cost: "
+st.text("The following is a list of possible terrain and their associated movement cost: ")
 costs_df = pd.DataFrame(list(COSTS.items()), columns=['Terrain', 'Movement Cost'])
 st.table(costs_df)
 
