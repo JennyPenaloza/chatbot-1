@@ -335,14 +335,8 @@ with st.sidebar:
 # Display randomized data based on user input for table height and width
 if submit:
     init_data = generate_random_world(st.session_state.world_height, st.session_state.world_width, COSTS)
-    print(init_data)
-    df = pd.DataFrame(init_data, columns=[f"{i}" for i in range(st.session_state.world_width)])
-    st.session_state.dataframe = df
-    st.session_state.init_data = init_data
-
-# Make data editable and reflect on display
-st.dataframe(st.session_state.dataframe)
-st.session_state.init_data = st.session_state.dataframe.values
+    emoji_data = display_emoji_grid(init_data)
+    st.markdown(emoji_data, unsafe_allow_html=True)
 
 
 if find_path:
@@ -359,9 +353,10 @@ if find_path:
         
         if world_traversal is not None:
             path_cost, found_goal_world = pretty_print_path(init_data, world_traversal, start, goal, COSTS)
-            df_goal = pd.DataFrame(found_goal_world, columns=[f"{i}" for i in range(st.session_state.world_width)])
-            path_found = st.write(f"Path was found! Total cost is: {path_cost}")
-            st.dataframe(df_goal)
+            emoji_data = display_emoji_grid(found_goal_world)
+
+            st.write(f"Path was found! Total cost is {path_cost}")
+            st.markdown(emoji_data, unsafe_allow_html=True)
 
         if path_cost >= 1000 or world_traversal is None:
             no_path = st.write("No path was found")
