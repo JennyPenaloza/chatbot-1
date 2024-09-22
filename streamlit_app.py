@@ -293,7 +293,7 @@ if 'dataframe' not in st.session_state:
 
 
 with st.sidebar:
-    container = st.container(border=True)   #Unify all values in sidebar
+    container = st.container(border=False)   #Unify all values in sidebar
     container.title("World Size")
 
     container.write("Select a Width:")
@@ -301,9 +301,11 @@ with st.sidebar:
 
     container.write("Select a Height:")
     st.session_state.world_height = container.number_input("Select a Height", min_value=2, max_value=10, value=4, step=1, key="select_height", label_visibility="collapsed")
-    
-    st.session_state.starting_coord = st.selectbox("Select a starting coordinate: ", coordinates)
-    st.session_state.goal_coord = st.selectbox("Select a goal coordinate: ", coordinates)
+
+    container.write("Select a Starting Coordinate: ")
+    st.session_state.starting_coord = st.selectbox("", coordinates)
+    container.write("Select a Goal Coordinate: ")
+    st.session_state.goal_coord = st.selectbox("", coordinates)
     submit = container.button("Submit", key="submit_button")
 
 # Display randomized data based on user input for table height and width
