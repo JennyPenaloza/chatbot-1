@@ -306,11 +306,11 @@ with st.sidebar:
 
     container2 = st.container(border=True)
     container2.write("Select a Starting Coordinate: ")
-    container2.session_state.starting_coord = st.selectbox("Starting Point", coordinates, label_visibility="collapsed")
+    container2.session_state.starting_coord = container2.selectbox("Starting Point", coordinates, label_visibility="collapsed")
     container2.write("Select a Goal Coordinate: ")
-    container2.session_state.goal_coord = st.selectbox("Goal Point", coordinates, label_visibility="collapsed")
+    container2.session_state.goal_coord = container2.selectbox("Goal Point", coordinates, label_visibility="collapsed")
     
-    submit = container.button("Submit", key="submit_button")
+    submit = container2.button("Submit", key="submit_button")
 
 # Display randomized data based on user input for table height and width
 if submit:
