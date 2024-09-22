@@ -351,19 +351,28 @@ if find_path:
         start = (reverse_start[1], reverse_start[0])
         goal = (reverse_goal[1], reverse_goal[0])
 
+        # Check if starting or ending on mountain
         if init_data[reverse_start[1]][reverse_start[0]] == '🌋':
             st.write("Invalid starting location, please pick a new coordinate.")
             st.stop()
-            
+
+        if init_data[reverse_goal[1]][reverse_goal[0]] == '🌋':
+            st.write("Invalid goal location, please pick a new coordinate.")
+            st.stop()
+        
         world_traversal = a_star_search(init_data, start, goal, COSTS, MOVES, heuristic)
         path_cost = 0
 
         # Paths greater than 1000 are technically not real- mountains are impassable
         if path_cost >= 1000:
             no_path = st.write("No path was found")
+            st.session_state.emoji_data = display_emoji_grid(init_data)
+            emoji_display_placeholder.markdown(st.session_state.emoji_data, unsafe_allow_html=True)
 
         elif world_traversal is None:
             no_path = st.write("No path was found")
+            st.session_state.emoji_data = display_emoji_grid(init_data)
+            emoji_display_placeholder.markdown(st.session_state.emoji_data, unsafe_allow_html=True)
             
         elif world_traversal is not None:
             path_cost, found_goal_world = pretty_print_path(init_data, world_traversal, start, goal, COSTS)
