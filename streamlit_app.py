@@ -313,7 +313,7 @@ with st.sidebar:
     container2.write("Select a Goal Coordinate: ")
     container2.session_state.goal_coord = container2.selectbox("Goal Point", coordinates, label_visibility="collapsed")
     
-    submit = st.button("Submit", key="submit_button")
+    submit = container2.button("Submit", key="submit_button")
 
 # Display randomized data based on user input for table height and width
 if submit:
