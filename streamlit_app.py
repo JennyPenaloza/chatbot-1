@@ -351,8 +351,8 @@ if find_path:
     # Plotting based off module 2
     if init_data is not None:
 
-        start = st.session_state.starting_coord
-        goal = st.session_state.goal_coord
+        start = container2.session_state.starting_coord
+        goal = container2.session_state.goal_coord
         world_traversal = a_star_search(init_data, start, goal, COSTS, MOVES, heuristic)
         print(world_traversal)
         path_cost = 0
@@ -363,7 +363,7 @@ if find_path:
             path_found = st.write(f"Path was found! Total cost is: {path_cost}")
             st.dataframe(df_goal)
 
-        if path_cost > 1000 or world_traversal is None:
+        if path_cost >= 1000 or world_traversal is None:
             no_path = st.write("No path was found")
 
 
