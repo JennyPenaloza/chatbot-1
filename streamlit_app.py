@@ -271,8 +271,10 @@ st.header(
     World Traversal- A* Search
     """
 )
+costs_string = {'🌾': '1', '🌲': '3', '⛰': '5', '🐊': '7', '🌋': 'Impassable'}
+
 st.text("The following is a list of possible terrain and their associated movement cost: ")
-costs_df = pd.DataFrame(list(COSTS.items()), columns=['Terrain', 'Movement Cost'])
+costs_df = pd.DataFrame(list(costs_string.items()), columns=['Terrain', 'Movement Cost'])
 st.table(costs_df)
 
 # Create initial grid height and width
