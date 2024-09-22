@@ -314,10 +314,10 @@ with st.sidebar:
     container.title("World Size")
 
     container.write("Select a Width:")
-    st.session_state.world_width = container.number_input("Select a Width", min_value=2, max_value=10, value=4, step=1, key="select_width", label_visibility="collapsed")
+    st.session_state.world_width = container.number_input("Select a Width", min_value=2, max_value=40, value=4, step=1, key="select_width", label_visibility="collapsed")
 
     container.write("Select a Height:")
-    st.session_state.world_height = container.number_input("Select a Height", min_value=2, max_value=10, value=4, step=1, key="select_height", label_visibility="collapsed")
+    st.session_state.world_height = container.number_input("Select a Height", min_value=2, max_value=40, value=4, step=1, key="select_height", label_visibility="collapsed")
     
     submit = container.button("Generate World", key="submit_button")
 
