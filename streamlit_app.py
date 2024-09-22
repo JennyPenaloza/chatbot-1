@@ -301,6 +301,8 @@ if 'emoji_data' not in st.session_state:
 if 'coordinates' not in st.session_state:
     st.session_state.coordinates = [(j, i) for i in range(st.session_state.world_height) for j in range(st.session_state.world_width)]
 
+emoji_display_placeholder = st.empty()
+emoji_display_placeholder.markdown(st.session_state.emoji_data, unsafe_allow_html=True)
 
 with st.sidebar:
     container = st.container(border=True)   #Unify all values in sidebar
@@ -330,7 +332,7 @@ if submit:
     st.session_state.world = generate_random_world(st.session_state.world_height, st.session_state.world_width, COSTS)
     st.session_state.coordinates = [(j, i) for i in range(st.session_state.world_height) for j in range(st.session_state.world_width)]
     st.session_state.emoji_data = display_emoji_grid(st.session_state.world)
-    st.markdown(st.session_state.emoji_data, unsafe_allow_html=True)
+    emoji_display_placeholder.markdown(st.session_state.emoji_data, unsafe_allow_html=True)
 
 
 if find_path:
@@ -358,7 +360,8 @@ if find_path:
             st.session_state.emoji_data = display_emoji_grid(found_goal_world)
 
             st.write(f"Path was found! Total cost is {path_cost}")
-            st.markdown(st.session_state.emoji_data, unsafe_allow_html=True)
+            emoji_display_placeholder.markdown(st.session_state.emoji_data, unsafe_allow_html=True)
+
 
 
 
