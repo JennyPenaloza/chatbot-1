@@ -292,7 +292,7 @@ if 'dataframe' not in st.session_state:
     st.session_state.init_data = init_data
 
 
-with st.sidebar("World Generation"):
+with st.sidebar:
     container = st.container(border=True)   #Unify all values in sidebar
     container.title("World Size")
 
