@@ -304,6 +304,7 @@ coordinates = [(i, j) for i in range(st.session_state.world_height) for j in ran
 # Populate with random data
 
 init_data = generate_random_world(st.session_state.world_height, st.session_state.world_width, COSTS)
+st.write(init_data)
 st.write(display_emoji_grid(init_data))
 
 
