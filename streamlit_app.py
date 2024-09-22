@@ -325,10 +325,10 @@ with st.sidebar:
     container2.title("Location Objective")
     
     container2.write("Select a Starting Coordinate: ")
-    container2.session_state.starting_coord = container2.selectbox("Starting Point", coordinates, label_visibility="collapsed")
+    st.session_state.starting_coord = container2.selectbox("Starting Point", coordinates, label_visibility="collapsed")
     
     container2.write("Select a Goal Coordinate: ")
-    container2.session_state.goal_coord = container2.selectbox("Goal Point", coordinates, label_visibility="collapsed")
+    st.session_state.goal_coord = container2.selectbox("Goal Point", coordinates, label_visibility="collapsed")
 
     find_path = container2.button("Find Path", key="find_path_button")
 
@@ -351,8 +351,8 @@ if find_path:
     # Plotting based off module 2
     if init_data is not None:
 
-        start = container2.session_state.starting_coord
-        goal = container2.session_state.goal_coord
+        start = st.session_state.starting_coord
+        goal = st.session_state.goal_coord
         world_traversal = a_star_search(init_data, start, goal, COSTS, MOVES, heuristic)
         print(world_traversal)
         path_cost = 0
