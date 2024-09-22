@@ -255,7 +255,6 @@ def pretty_print_path( world: List[List[str]], path: List[Tuple[int, int]], star
     traversed_world = display_emoji_grid(copy_world)
     return path_cost, copy_world
 #--------------------------------------------------------------------------
-# OH 40min for assingment
 # Actual streamlit processes
 
 
@@ -304,6 +303,7 @@ coordinates = [(i, j) for i in range(st.session_state.world_height) for j in ran
 
 if 'world' not in st.session_state:
     st.session_state.world = generate_random_world(st.session_state.world_height, st.session_state.world_width, COSTS)
+    coordinates = [(i, j) for i in range(st.session_state.world_height) for j in range(st.session_state.world_width)]
 
 emoji_data = display_emoji_grid(st.session_state.world)
 st.markdown(emoji_data, unsafe_allow_html=True)
